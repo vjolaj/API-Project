@@ -1,7 +1,14 @@
 const express = require("express");
 const { Op } = require("sequelize");
 const bcrypt = require("bcryptjs");
-const { Spot, sequelize, Review, SpotImage } = require("../../db/models");
+const {
+  User,
+  Spot,
+  sequelize,
+  Review,
+  SpotImage,
+  ReviewImage,
+} = require("../../db/models");
 const {
   setTokenCookie,
   restoreUser,
@@ -41,7 +48,6 @@ router.get("/", async (req, res) => {
 //GET all spots owned by the current user
 router.get("/current", requireAuth, async (req, res) => {
   const userId = req.user.id;
-  console.log(userId);
   const spots = await Spot.findAll({
     where: {
       ownerId: userId,
@@ -68,6 +74,81 @@ router.get("/current", requireAuth, async (req, res) => {
   }
   res.json({ Spots: completeSpots });
 });
+
+//GET all reviews by a spot's id
+router.get("/:spotId/reviews", async (req, res) => {
+  const spotId = parseInt(req.params.spotId);
+  const spot = await Spot.findByPk(spotId);
+
+  if (!spot) {
+    return res.status(404).json({ message: "Spot couldn't be found" });
+  }
+
+  const reviews = await Review.findAll({
+    where: {
+      spotId: spotId,
+    },
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      { model: ReviewImage, attributes: ["id", "url"] },
+    ],
+  });
+  res.json({ Reviews: reviews });
+});
+
+const validateReview = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .isInt({ min: 1, max: 5 })
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors,
+];
+
+//Create a review for a spot based on the spot's id
+router.post(
+  "/:spotId/reviews",
+  validateReview,
+  requireAuth,
+  async (req, res) => {
+    const { review, stars } = req.body;
+    const userId = req.user.id;
+    const spotId = parseInt(req.params.spotId);
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    const existingReview = await Review.findOne({ where: { userId, spotId } });
+
+    if (existingReview) {
+      return res
+        .status(500)
+        .json({ message: "User already has a review for this spot" });
+    }
+
+
+    const newReview = await Review.create({
+      userId,
+      spotId,
+      review,
+      stars,
+    });
+    const safeReview = {
+      id: newReview.id,
+      userId: newReview.userId,
+      spotId: newReview.spotId,
+      review: newReview.review,
+      stars: newReview.stars,
+      createdAt: newReview.createdAt,
+      updatedAt: newReview.updatedAt,
+    };
+    return res.json(safeReview);
+  }
+);
 
 //GET details of a spot from an Id
 router.get("/:spotId", async (req, res) => {
@@ -207,12 +288,12 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
   }
 
   if (userId === spot.ownerId) {
-    const image = await spot.createSpotImage({spotId, url, preview});
+    const image = await spot.createSpotImage({ spotId, url, preview });
     const newImage = {
-        id: image.id,
-        url: image.url,
-        preview: image.preview
-    }
+      id: image.id,
+      url: image.url,
+      preview: image.preview,
+    };
     res.json(newImage);
   } else {
     res.status(403).json({ message: "Unauthorized access" });
@@ -236,5 +317,6 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
     res.status(403).json({ message: "Unauthorized access" });
   }
 });
+
 
 module.exports = router;
