@@ -77,7 +77,6 @@ router.get("/:spotId", async (req, res) => {
   if (!spot) {
     return res.status(404).json({ message: "Spot couldn't be found" });
   }
-  const completeSpot = [];
 
   const reviews = await spot.getReviews();
 
@@ -95,9 +94,8 @@ router.get("/:spotId", async (req, res) => {
     },
   });
   spot.dataValues.spotImages = spotImages;
-  completeSpot.push(spot.toJSON());
 
-  res.json({ Spots: completeSpot });
+  res.json(spot);
 });
 
 const validateSpot = [
@@ -197,6 +195,30 @@ router.put("/:spotId", validateSpot, requireAuth, async (req, res) => {
   }
 });
 
+//Add an image to a spot based on the spot's id
+router.post("/:spotId/images", requireAuth, async (req, res) => {
+  const { url, preview } = req.body;
+  const userId = req.user.id;
+  const spotId = parseInt(req.params.spotId);
+  let spot = await Spot.findByPk(spotId);
+
+  if (!spot) {
+    return res.status(404).json({ message: "Spot couldn't be found" });
+  }
+
+  if (userId === spot.ownerId) {
+    const image = await spot.createSpotImage({spotId, url, preview});
+    const newImage = {
+        id: image.id,
+        url: image.url,
+        preview: image.preview
+    }
+    res.json(newImage);
+  } else {
+    res.status(403).json({ message: "Unauthorized access" });
+  }
+});
+
 //DELETE a spot
 router.delete("/:spotId", requireAuth, async (req, res) => {
   const userId = req.user.id;
@@ -209,7 +231,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
 
   if (userId === spot.ownerId) {
     await spot.destroy();
-    res.json({message: "Successfully deleted"})
+    res.json({ message: "Successfully deleted" });
   } else {
     res.status(403).json({ message: "Unauthorized access" });
   }
