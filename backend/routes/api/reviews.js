@@ -63,7 +63,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         }
         res.json(newImage)
     } else {
-        res.status(403).json({ message: "Unauthorized access" });
+        res.status(403).json({ message: "Forbidden" });
     }
 })
 
@@ -95,7 +95,7 @@ router.put('/:reviewId', validateReview, requireAuth, async (req, res) => {
         await foundReview.save();
         res.json(foundReview)
     } else {
-        res.status(403).json({ message: "Unauthorized access" });
+        res.status(403).json({ message: "Forbidden" });
     }
 })
 
@@ -114,7 +114,7 @@ router.delete("/:reviewId", requireAuth, async(req,res) => {
         await review.destroy();
         res.json({ message: "Successfully deleted"})
     } else {
-        res.status(403).json({ message: "Unauthorized access" })
+        res.status(403).json({ message: "Forbidden" })
     }
 })
 module.exports = router;

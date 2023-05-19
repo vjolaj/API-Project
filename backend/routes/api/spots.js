@@ -15,16 +15,40 @@ const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
 const queryParamValidator = [
-check('page').optional().isInt({ min: 1 }).withMessage('Page must be greater than or equal to 1'),
-check('size').optional().isInt({ min: 1 }).withMessage('Size must be greater than or equal to 1'),
-check('minLat').optional().isNumeric().withMessage('Minimum latitude is invalid'),
-check('maxLat').optional().isNumeric().withMessage('Maximum latitude is invalid'),
-check('minLng').optional().isNumeric().withMessage('Minimum longitude is invalid'),
-check('maxLng').optional().isNumeric().withMessage('Maximum longitude is invalid'),
-check('minPrice').optional().isNumeric({ min: 0 }).withMessage('Minimum price must be greater than or equal to 0'),
-check('maxPrice').optional().isNumeric({ min: 0 }).withMessage('Maximum price must be greater than or equal to 0'),
-handleValidationErrors,
-]
+  check("page")
+    .optional()
+    .isInt({ min: 1 })
+    .withMessage("Page must be greater than or equal to 1"),
+  check("size")
+    .optional()
+    .isInt({ min: 1 })
+    .withMessage("Size must be greater than or equal to 1"),
+  check("minLat")
+    .optional()
+    .isNumeric()
+    .withMessage("Minimum latitude is invalid"),
+  check("maxLat")
+    .optional()
+    .isNumeric()
+    .withMessage("Maximum latitude is invalid"),
+  check("minLng")
+    .optional()
+    .isNumeric()
+    .withMessage("Minimum longitude is invalid"),
+  check("maxLng")
+    .optional()
+    .isNumeric()
+    .withMessage("Maximum longitude is invalid"),
+  check("minPrice")
+    .optional()
+    .isNumeric({ min: 0 })
+    .withMessage("Minimum price must be greater than or equal to 0"),
+  check("maxPrice")
+    .optional()
+    .isNumeric({ min: 0 })
+    .withMessage("Maximum price must be greater than or equal to 0"),
+  handleValidationErrors,
+];
 
 //GET all spots, returns all spots
 router.get("/", queryParamValidator, async (req, res) => {
@@ -95,7 +119,7 @@ router.get("/", queryParamValidator, async (req, res) => {
       sum += review.dataValues.stars;
     }
     const avg = sum / reviews.length;
-    spot.dataValues.avgRating = avg;
+    spot.dataValues.avgStarRating = avg;
 
     const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id, preview: true },
@@ -126,14 +150,14 @@ router.get("/current", requireAuth, async (req, res) => {
       sum += review.dataValues.stars;
     }
     const avg = sum / reviews.length;
-    spot.dataValues.avgRating = avg;
+    spot.dataValues.avgStarRating = avg;
 
     const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id, preview: true },
     });
     spot.dataValues.previewImage = previewImage ? previewImage.url : "";
     completeSpots.push(spot.toJSON());
-}
+  }
   res.json({ Spots: completeSpots });
 });
 
@@ -213,53 +237,65 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
     return res.status(404).json({ message: "Spot couldn't be found" });
   }
 
-  const existingBooking = await Booking.findAll({
+    // const existingBooking = await Booking.findAll({
+    //   where: {
+    //     spotId: spot.id,
+    //     [Op.or]: [
+    //       {
+    //         startDate: {
+    //           [Op.between]: [startDate, endDate],
+    //         },
+    //       },
+    //       {
+    //         endDate: {
+    //           [Op.between]: [startDate, endDate],
+    //         },
+    //       },
+    //     ],
+    //   },
+    // });
+
+    // if (existingBooking) {
+    //   return res.status(403).json({
+    //     message: "Sorry, this spot is already booked for the specified dates",
+    //     errors: {
+    //       startDate: "Start date conflicts with an existing booking",
+    //       endDate: "End date conflicts with an existing booking",
+    //     },
+    //   });
+    // }
+
+  const currentBookings = await Booking.findAll({
     where: {
       spotId: spot.id,
-      [Op.or]: [
-        {
-          startDate: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-        {
-          endDate: {
-            [Op.between]: [startDate, endDate],
-          },
-        },
-      ],
     },
   });
-
-  if (existingBooking) {
-    return res.status(403).json({
-      message: "Sorry, this spot is already booked for the specified dates",
-      errors: {
-        startDate: "Start date conflicts with an existing booking",
-        endDate: "End date conflicts with an existing booking",
-      },
-    });
+  for (let booking of currentBookings) {
+    let bookingStartDate = new Date(
+      new Date(booking.dataValues.startDate).toUTCString()
+    );
+    let bookingEndDate = new Date(
+      new Date(booking.dataValues.endDate).toUTCString()
+    );
+    if (
+      startDate.getTime() >= bookingStartDate.getTime() &&
+      startDate.getTime() <= bookingEndDate.getTime()
+    ) {
+      return res.status(400).json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors: { startDate: "Start date conflicts with an existing booking" },
+      });
+    }
+    if (
+      endDate.getTime() >= bookingEndDate.getTime() &&
+      endDate.getTime() <= bookingEndDate.getTime()
+    ) {
+      return res.status(400).json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors: { endDate: "End date conflicts with an existing booking" },
+      });
+    }
   }
-  //   for (let booking of currentBookings) {
-  //     if (
-  //       startDate.getTime() >= bookingStartDate.getTime() &&
-  //       startDate.getTime() <= bookingEndDate.getTime()
-  //     ) {
-  //       return res.status(400).json({
-  //         message: "Sorry, this spot is already booked for the specified dates",
-  //         errors: { startDate: "Start date conflicts with an existing booking" },
-  //       });
-  //     }
-  //     if (
-  //       endDate.getTime() >= bookingEndDate.getTime() &&
-  //       endDate.getTime() <= bookingEndDate.getTime()
-  //     ) {
-  //       return res.status(400).json({
-  //         message: "Sorry, this spot is already booked for the specified dates",
-  //         errors: { endDate: "End date conflicts with an existing booking" },
-  //       });
-  //     }
-  //   }
 
   if (userId !== spot.ownerId) {
     const newBooking = await Booking.create({
@@ -278,6 +314,8 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
       updatedAt: newBooking.updatedAt,
     };
     return res.json(safeBooking);
+  } else {
+    res.status(403).json({ message: "Forbidden" });
   }
 });
 
@@ -337,7 +375,14 @@ router.post(
 //GET details of a spot from an Id
 router.get("/:spotId", async (req, res) => {
   const spotId = parseInt(req.params.spotId);
-  const spot = await Spot.findByPk(spotId);
+  const spot = await Spot.findOne({
+    where: { id: spotId },
+    include: {
+      model: User,
+      as: "Owner",
+      attributes: ["id", "firstName", "lastName"],
+    },
+  });
 
   if (!spot) {
     return res.status(404).json({ message: "Spot couldn't be found" });
@@ -346,11 +391,14 @@ router.get("/:spotId", async (req, res) => {
   const reviews = await spot.getReviews();
 
   let sum = 0;
+  let num = 0;
   for (let review of reviews) {
     sum += review.dataValues.stars;
+    num++;
   }
   const avg = sum / reviews.length;
-  spot.dataValues.avgRating = avg;
+  spot.dataValues.avgStarRating = avg;
+  spot.dataValues.numReviews = num;
 
   const spotImages = await SpotImage.findAll({
     where: { spotId: spot.id },
@@ -358,6 +406,7 @@ router.get("/:spotId", async (req, res) => {
       exclude: ["spotId", "createdAt", "updatedAt"],
     },
   });
+
   spot.dataValues.spotImages = spotImages;
 
   res.json(spot);
@@ -480,7 +529,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     };
     res.json(newImage);
   } else {
-    res.status(403).json({ message: "Unauthorized access" });
+    res.status(403).json({ message: "Forbidden" });
   }
 });
 
@@ -498,7 +547,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
     await spot.destroy();
     res.json({ message: "Successfully deleted" });
   } else {
-    res.status(403).json({ message: "Unauthorized access" });
+    res.status(403).json({ message: "Forbidden" });
   }
 });
 
