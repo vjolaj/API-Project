@@ -22,7 +22,7 @@ module.exports = {
         spotId: 1,
         userId: 3,
         review: 'Had a great stay here!',
-        stars: 3
+        stars: 4
       },
       {
         spotId: 2,

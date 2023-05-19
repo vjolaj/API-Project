@@ -118,8 +118,8 @@ router.get("/", queryParamValidator, async (req, res) => {
     for (let review of reviews) {
       sum += review.dataValues.stars;
     }
-    const avg = sum / reviews.length;
-    spot.dataValues.avgStarRating = avg;
+    let avg = sum / parseFloat(reviews.length);
+    spot.dataValues.avgStarRating = avg.toFixed(2);
 
     const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id, preview: true },
@@ -149,8 +149,8 @@ router.get("/current", requireAuth, async (req, res) => {
     for (let review of reviews) {
       sum += review.dataValues.stars;
     }
-    const avg = sum / reviews.length;
-    spot.dataValues.avgStarRating = avg;
+    let avg = sum / parseFloat(reviews.length);
+    spot.dataValues.avgStarRating = avg.toFixed(2);
 
     const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id, preview: true },
@@ -396,8 +396,8 @@ router.get("/:spotId", async (req, res) => {
     sum += review.dataValues.stars;
     num++;
   }
-  const avg = sum / reviews.length;
-  spot.dataValues.avgStarRating = avg;
+  let avg = sum / parseFloat(reviews.length);
+  spot.dataValues.avgStarRating = avg.toFixed(2);
   spot.dataValues.numReviews = num;
 
   const spotImages = await SpotImage.findAll({
