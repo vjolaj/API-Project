@@ -14,23 +14,43 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "image_spot1 url",
+        url: "image_spot1_1 url",
         preview: true
       },
       {
+        spotId: 1,
+        url: "image_spot1_2 url",
+        preview: false
+      },
+      {
         spotId: 2,
-        url: "image_spot2 url",
+        url: "image_spot2_1 url",
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: "image_spot2_2 url",
         preview: true
       },
       {
         spotId: 3,
-        url: "image_spot3 url",
+        url: "image_spot3_1 url",
+        preview: true
+      },
+      {
+        spotId: 3,
+        url: "image_spot3_2 url",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "image_spot4_1 url",
         preview: true
       },
       {
         spotId: 4,
-        url: "image_spot4 url",
-        preview: true
+        url: "image_spot4_2 url",
+        preview: false
       }
     ], {});
   },
@@ -39,7 +59,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      url: { [Op.in]: ['image_spot1 url', 'image_spot2 url', 'image_spot3 url', 'image_spot4 url'] }
+      url: { [Op.in]: ["image_spot1_1 url", "image_spot1_2 url", "image_spot2_1 url", 'image_spot2_2 url',"image_spot3_1 url", "image_spot3_2 url", "image_spot4_1 url", "image_spot4_2 url"] }
     }, {});
   }
 };
