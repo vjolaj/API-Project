@@ -46,7 +46,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     if (!review) {
         return res.status(404).json({message: "Review couldn't be found"})
     }
-    console.log(Object.getOwnPropertyNames(Review.prototype));
 
     //add error handling: cannot add any more images because there is a maximum of 10 images per source
     const existingImagesCount = await review.countReviewImages();
