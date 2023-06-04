@@ -60,6 +60,37 @@
 
 // export default LoginFormPage;
 
+//   return (
+//     <>
+//       <h1>Log In</h1>
+//       <form onSubmit={handleSubmit}>
+//         <label>
+//           Username or Email
+//           <input
+//             type="text"
+//             value={credential}
+//             onChange={(e) => setCredential(e.target.value)}
+//             required
+//           />
+//         </label>
+//         <label>
+//           Password
+//           <input
+//             type="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             required
+//           />
+//         </label>
+//         {errors.credential && (
+//           <p>{errors.credential}</p>
+//         )}
+//         <button type="submit">Log In</button>
+//       </form>
+//     </>
+//   );
+// }
+
 // frontend/src/components/LoginFormModal/index.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
@@ -87,32 +118,40 @@ function LoginFormModal() {
       });
   };
 
+  const isButtonDisabled = () => {
+    if (credential.length < 4 || password.length < 6) {
+      return true;
+    } return false;
+  }
+
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
+      <form className="form-container" onSubmit={handleSubmit}>
+      <h1 className="logIn">Log In</h1>
+        <label className="text-input">
+          {/* Username or Email */}
           <input
+          className="input credentials"
+          placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
         </label>
-        <label>
-          Password
+        <label className="text-input">
+          {/* Password */}
           <input
+           className="input password"
+           placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
-        <button type="submit">Log In</button>
+        {errors.credential && <p>{errors.credential}</p>}
+        <button className="submit-button" type="submit" disabled={isButtonDisabled}>Log In</button>
       </form>
     </>
   );

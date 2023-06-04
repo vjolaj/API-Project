@@ -1,34 +1,40 @@
 
 .form-container{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    margin: 100px auto;
+    /* box-sizing: border-box; */
+    display: grid;
+    grid-auto-flow: row;
+    /* grid-row-gap: px; */
     width: 350px;
     align-items: center;
     border-radius: 20px;
     border: 1px solid black;
-    padding: 20px 10px;
+    padding: 20px;
     font-family: 'Manrope', sans-serif;
+    margin: 20px auto; 
 }
 
 .logIn {
     font-size: 24pt;
     font-weight: bold;
+    text-align: center; 
 }
 
 .input {
     background-color: #E8F0FE;
-    width: 98%;
-    /* padding: 5px 0px; */
+    width: 100%;
+    padding: 5px 0px;
 }
 
 .text-input {
     width: 100%;
     padding: 5px 0px;
+    position: relative; 
 }
 
+
 .password {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .submit-button {
@@ -42,6 +48,7 @@
     font-family: 'Manrope', sans-serif;
     margin-bottom: 20px;
 }
+
 
 /* .text-input {
     padding-right: 30px;
