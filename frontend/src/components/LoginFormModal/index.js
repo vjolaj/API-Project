@@ -128,7 +128,7 @@ function LoginFormModal() {
     dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
     .then(closeModal)
   }
-
+//
 
   return (
     <>
