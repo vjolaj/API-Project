@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
     );
   } else {
     sessionLinks = (
-      <div className="userButtons nav">
+      <div>
         <OpenModalButton
           buttonText="Log In"
           modalComponent={<LoginFormModal />}

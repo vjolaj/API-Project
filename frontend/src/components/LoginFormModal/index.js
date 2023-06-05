@@ -92,7 +92,7 @@
 // }
 
 // frontend/src/components/LoginFormModal/index.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -104,6 +104,7 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const [disabled, setDisabled] = useState(true)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -118,11 +119,15 @@ function LoginFormModal() {
       });
   };
 
-  const isButtonDisabled = () => {
-    if (credential.length < 4 || password.length < 6) {
-      return true;
-    } return false;
-  }
+  useEffect(() => {
+    if (credential.length >= 4 && password.length >= 6) {
+      console.log('Enabling button');
+      setDisabled(false)
+    } else {
+      console.log('Disabling button');
+      setDisabled(true)}
+  }, [credential, password])
+
 
   const loginDemo = () => {
     dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
@@ -157,7 +162,7 @@ function LoginFormModal() {
           />
         </label>
         {errors.credential && <p>{errors.credential}</p>}
-        <button className="submit-button" type="submit" disabled={isButtonDisabled}>Log In</button>
+        <button className="submit-button" type="submit" disabled={disabled}>Log In</button>
         <button className="demo-button" onClick={loginDemo}>DemoUser Login</button>
       </form>
     </>

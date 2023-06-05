@@ -1,10 +1,8 @@
 
 .form-container{
     margin: 100px auto;
-    /* box-sizing: border-box; */
     display: grid;
     grid-auto-flow: row;
-    /* grid-row-gap: px; */
     width: 350px;
     align-items: center;
     border-radius: 20px;
@@ -54,6 +52,7 @@
     color: white;
 }
 
+
 .demo-button {
     color: black;
     padding: 10px 14px;
@@ -70,5 +69,4 @@
     opacity: 0.8;
     background-color: #287510;
     color: white;
-}
-
+} 
