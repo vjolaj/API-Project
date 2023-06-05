@@ -38,6 +38,8 @@
     opacity: 0.8;
     font-family: 'Manrope', sans-serif;
     margin-bottom: 20px;
+    background-color: rgb(218, 156, 156);
+    color: white;
 }
 
 #createUser-button:hover {
