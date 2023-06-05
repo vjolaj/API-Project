@@ -124,6 +124,12 @@ function LoginFormModal() {
     } return false;
   }
 
+  const loginDemo = () => {
+    dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
+    
+  }
+
+
   return (
     <>
       <form className="form-container" onSubmit={handleSubmit}>
@@ -152,6 +158,7 @@ function LoginFormModal() {
         </label>
         {errors.credential && <p>{errors.credential}</p>}
         <button className="submit-button" type="submit" disabled={isButtonDisabled}>Log In</button>
+        <button onClick={loginDemo}>DemoUser Login</button>
       </form>
     </>
   );
