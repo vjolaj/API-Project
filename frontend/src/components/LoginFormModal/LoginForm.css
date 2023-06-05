@@ -43,20 +43,32 @@
     cursor: pointer;
     width: 100%;
     border: 1px solid #000000;
-    margin-bottom:10px;
     opacity: 0.8;
     font-family: 'Manrope', sans-serif;
-    margin-bottom: 20px;
 }
 
-
-/* .text-input {
-    padding-right: 30px;
-} */
 
 .submit-button:hover {
     opacity: 0.8;
     background-color: #FF5A5F;
+    color: white;
+}
+
+.demo-button {
+    color: black;
+    padding: 10px 14px;
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid #000000;
+    margin-bottom:20px;
+    opacity: 0.8;
+    font-family: 'Manrope', sans-serif;
+}
+
+
+.demo-button:hover {
+    opacity: 0.8;
+    background-color: #287510;
     color: white;
 }
 

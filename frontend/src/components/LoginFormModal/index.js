@@ -126,7 +126,7 @@ function LoginFormModal() {
 
   const loginDemo = () => {
     dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
-    
+    .then(closeModal)
   }
 
 
@@ -158,7 +158,7 @@ function LoginFormModal() {
         </label>
         {errors.credential && <p>{errors.credential}</p>}
         <button className="submit-button" type="submit" disabled={isButtonDisabled}>Log In</button>
-        <button onClick={loginDemo}>DemoUser Login</button>
+        <button className="demo-button" onClick={loginDemo}>DemoUser Login</button>
       </form>
     </>
   );
