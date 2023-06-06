@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/'>
           <SpotsIndex />
         </Route>
-        <Route exact path='/api/spots/:spotId'>
+        <Route exact path='/spots/:spotId'>
           <SpotDetails />
         </Route>
         </Switch>}
