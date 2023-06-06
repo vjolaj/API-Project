@@ -10,7 +10,6 @@
   }
 
   .spot {
-    width: 20%; /* Adjust the width to fit four spots per row */
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -30,4 +29,8 @@
     width: 100%;
     height: auto;
     border-radius: 5px;
+  }
+
+  a {
+    text-decoration: none;
   }
