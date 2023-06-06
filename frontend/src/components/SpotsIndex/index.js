@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {allSpotsThunk} from '../../store/spot'
 import './SpotsIndex.css'
 
@@ -16,12 +17,14 @@ export default function SpotsIndex () {
 return (
     <div className='spots-container'>
       {spots && spots.map(spot => (
-        <div className='spot' key={`spot-${spot.id}`}>
+        <Link to={`/spots/${spot.id}`} key={`spot-${spot.id}`}>
+        <div className='spot'>
           <img src={spot.previewImage} alt="Spot Preview" />
           <h2>{spot.name}</h2>
           <p>City: {spot.city}, State: {spot.state}</p>
           <p>${spot.price} night</p>
         </div>
+        </Link>
       ))}
     </div>
   );

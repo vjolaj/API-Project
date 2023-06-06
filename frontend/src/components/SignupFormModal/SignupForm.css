@@ -1,6 +1,5 @@
-.form-container {
+.signUp-form-container {
   margin: 100px auto;
-  /* box-sizing: border-box; */
   display: grid;
   grid-auto-flow: row;
   grid-row-gap: 15px;
@@ -19,17 +18,17 @@
   text-align: center;
 }
 
-.input {
+.signUp-input {
     background-color: #E8F0FE;
     width: 100%;
     padding: 5px 0px;
 }
 
-input + input {
+.signUp-input + .signUp-input {
     margin-bottom: 10px;
 }
 
-.submit-button {
+#createUser-button {
     color: black;
     padding: 16px 20px;
     cursor: pointer;
@@ -39,14 +38,11 @@ input + input {
     opacity: 0.8;
     font-family: 'Manrope', sans-serif;
     margin-bottom: 20px;
+    background-color: rgb(218, 156, 156);
+    color: white;
 }
 
-
-/* .text-input {
-    padding-right: 30px;
-} */
-
-.submit-button:hover {
+#createUser-button:hover {
     opacity: 0.8;
     background-color: #FF5A5F;
     color: white;

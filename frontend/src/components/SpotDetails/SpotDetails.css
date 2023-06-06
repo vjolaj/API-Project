@@ -1,0 +1,108 @@
+.name  {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 15px
+}
+
+.location {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.hostInfo {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.images-container  {
+    display: flex;
+    flex-direction: row;
+}
+
+.preview-image {
+    height: 500px;
+}
+
+.other-images {
+    height: 200px
+}
+
+.description {
+    font-size: 14px;
+    margin: 15px;
+}
+
+.belowImages {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.belowImages-info {
+    margin: 15px;
+}
+
+
+.reserve-container {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    width: 300px;
+    margin-right: 15px;
+    font-size: 14pt;
+}
+
+.price-reviews {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.reviews {
+    display: flex;
+    justify-content: space-between;
+}
+
+.starRating {
+    margin-right: 10px;
+}
+.reserveButton {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.reviewsContainer {
+    margin: 15px;
+    border-top: 1px solid #999999;
+}
+
+.mainReviews {
+    display: flex;
+    margin-top: 15px;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.individualReview {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createdAt {
+    color: #999999;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12pt;
+}
+
+.reviewDescription {
+    font-size: 14pt;
+}
+
+.reviewUser {
+    font-size: 14pt;
+    font-weight: bold;
+}
