@@ -7,6 +7,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
 import logo from '../../assets/airbnb-logo-header.png'
+import CreateSpot from "../CreateSpot";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -35,12 +36,15 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="header">
-      <div className="logo">
+        <NavLink exact to="/">
+        <div className="logo">
         <img src={logo} alt="Airbnb logo" />
       </div>
+        </NavLink>
+        
       <div className="home nav">
-        <NavLink exact to="/">
-          Home
+        <NavLink exact to= "/spots/new">
+          Create spot
         </NavLink>
       </div>
       {isLoaded && sessionLinks}
