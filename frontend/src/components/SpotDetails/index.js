@@ -42,12 +42,12 @@ export default function SpotDetail() {
       <div className="images">
         <div className="preview-image">
           <img
-            src={spot.spotImages.find((image) => image.preview).url}
+            src={spot.spotImages && spot.spotImages.find((image) => image.preview).url}
             alt="Preview Image of Spot"
           />
         </div>
         <div className="other-images">
-          {spot.spotImages
+          {spot.spotImages && spot.spotImages
             .filter((image) => !image.preview)
             .map((image) => (
               <img key={image.id} src={image.url} alt="Image of spot" />
@@ -57,7 +57,7 @@ export default function SpotDetail() {
       <div className="belowImages">
         <div className="belowImages-info">
           <div className="hostInfo">
-            Hosted by {spot.Owner.firstName} {spot.Owner.lastName}{" "}
+            Hosted by {spot.Owner && spot.Owner.firstName} {spot.Owner && spot.Owner.lastName}{" "}
           </div>
           <div className="description"> {spot.description}</div>
         </div>

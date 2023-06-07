@@ -156,9 +156,8 @@ export default function CreateSpot() {
         setImage3('');
         setImage4('');
 
-        if (newSpot) {
-            history.push(`/spots/${newSpot.id}`)
-        }
+
+        newSpot && history.push(`/spots/${newSpot.id}`)
 
         if (Object.values(validationErrors).length) {
             return;
