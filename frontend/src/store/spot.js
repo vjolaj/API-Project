@@ -2,8 +2,7 @@ import { csrfFetch } from "./csrf"
 
 const GET_ALL_SPOTS = 'spots/spots'
 const GET_SPOT_DETAILS='spots/individual_spot'
-const CREATE_SPOT='spots/create'
-const ADD_IMAGE='spots/images/add'
+// const CREATE_SPOT='spots/create'
 
 const getAllSpotsAction = spots => ({
         type: GET_ALL_SPOTS,
@@ -15,16 +14,11 @@ const getSpotDetails = spot => ({
     spot
 })
 
-const createImage = image => ({
-    type: ADD_IMAGE,
-    image
-})
 
-
-const createSpot = spot => ({
-    type: CREATE_SPOT,
-    spot
-})
+// const createSpot = spot => ({
+//     type: CREATE_SPOT,
+//     spot
+// })
 
 export const allSpotsThunk = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
@@ -65,44 +59,27 @@ try {
 
         for (let image of imagesArray) {
             image.spotId = newSpot.id;
-            const images = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            const imageData = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(images)
+                body: JSON.stringify(image)
             })
-            if (images.ok) {
-                const image = await images.json();
+            if (imageData.ok) {
+                const image = await imageData.json();
                 spotImagesArray.push(image)
             }
         }
         newSpot.SpotImages = spotImagesArray;
         newSpot.owner = owner
+        await dispatch(getSpotDetails(newSpot))
+        return newSpot
     }
 } catch (err) {
     const error = await err.json();
     return error;
 }
-} 
-
-export const createImageThunk = (image, spotId) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
-        method: "POST",
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(image)
-    })
-    const data = await res.json();
-    if (res.ok) {
-        dispatch(createImage(image))
-        return data
-    } 
-    else {
-        const errorData = await res.json()
-        return errorData
-    }
 } 
 
 
@@ -115,11 +92,6 @@ export const spotReducer = (state =  {}, action) => {
         case GET_SPOT_DETAILS:
             newState = {...state, singleSpot: action.spot}
             return newState
-        case CREATE_SPOT:
-            newState = {...state, allSpots: {...state.AllSpots, [action.spot.id]: action.spot}}
-            return newState; 
-        case ADD_IMAGE:
-            newState = {...state, singleSpot: {...state.singleSpot, spotImages: [action.image]}}
         default:
             return state
     }

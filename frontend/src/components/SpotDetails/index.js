@@ -10,7 +10,7 @@ export default function SpotDetail() {
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-  console.log(reviews);
+//   console.log(reviews);
 
   useEffect(() => {
     dispatch(spotDetailThunk(spotId));

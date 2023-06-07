@@ -40,6 +40,11 @@ input {
     justify-content: space-between;
 }
 
+.latLongContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .inputContainer {
     position: relative;
     margin-bottom: 10px;

@@ -14,6 +14,8 @@ export default function CreateSpot() {
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [description, setDescription] = useState("")
+    const [latitude, setLatitude] = useState(40)
+    const [longitude, setLongitude] = useState(40)
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [imagePreview, setImagePreview] = useState("")
@@ -37,6 +39,21 @@ export default function CreateSpot() {
         if (!state) {
             errorsObject.state = "State is required"
         }
+        if (!latitude) {
+            errorsObject.latitude = "Latitude is required"
+        }
+
+        if (!longitude) {
+            errorsObject.longitude = "Longitude is required"
+        }
+        if (isNaN(latitude)) {
+            errorsObject.latitude = "latitude must be a number";
+        }
+
+        if (isNaN(longitude)) {
+            errorsObject.longitude = "longitude must be a number";
+        }
+
         if (description.length < 30) {
             errorsObject.description = "Description needs a minimum of 30 characters"
         }
@@ -52,8 +69,8 @@ export default function CreateSpot() {
         if (!price) {
             errorsObject.price = "Price is required"
         }
-        if (typeof price !== "number") {
-            errorsObject.price = "Price must be a number"
+        if (isNaN(price)) {
+            errorsObject.price = "Price must be a number";
         }
         if (!imagePreview) {
             errorsObject.imagePreview = "Preview image is required."
@@ -74,15 +91,14 @@ export default function CreateSpot() {
             errorsObject.image4 = "Image URL must end in .png, .jpg, or .jpeg.";
         }
         setValidationErrors(errorsObject)
-    }, [country, address, city, state, description, title, price, imagePreview, image1, image2, image3, image4])
+    }, [country, address, city, state, description, title, price, latitude, longitude, imagePreview, image1, image2, image3, image4])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setValidationErrors({})
         
-        const spot = {
-            ...spot, address, city, state, country, description, price, imagePreview
-        }
+        const spot = {address, city, state, country, lat: latitude, lng: longitude, name: title, description, price}
 
         const imageArray = []
 
@@ -103,27 +119,27 @@ export default function CreateSpot() {
         if (image2) {
             const image2Obj = {
                 url: image2,
-                preview: true
+                preview: false
             }
             imageArray.push(image2Obj)
         }
         if (image3) {
             const image3Obj = {
                 url: image3,
-                preview: true
+                preview: false
             }
             imageArray.push(image3Obj)
         }
         if (image4) {
             const image4Obj = {
                 url: image4,
-                preview: true
+                preview: false
             }
             imageArray.push(image4Obj)
         }
 
-        const newSpot = dispatch(createSpotThunk(spot, imageArray, owner));
-        spot = newSpot;
+        const newSpot = await dispatch(createSpotThunk(spot, owner, imageArray));
+        console.log(newSpot)
 
         setCity('');
         setCountry('');
@@ -131,6 +147,8 @@ export default function CreateSpot() {
         setState('');
         setDescription('');
         setTitle('');
+        setLatitude(40);
+        setLongitude(40);
         setPrice('');
         setImagePreview('');
         setImage1('');
@@ -138,23 +156,16 @@ export default function CreateSpot() {
         setImage3('');
         setImage4('');
 
-        history.push(`/spots/${spot.id}`)
+        if (newSpot) {
+            history.push(`/spots/${newSpot.id}`)
+        }
+
+        if (Object.values(validationErrors).length) {
+            return;
+        }
     }
     
-    // const reset = () => {
-    //     setCity('');
-    //     setCountry('');
-    //     setAddress('');
-    //     setState('');
-    //     setDescription('');
-    //     setTitle('');
-    //     setPrice('');
-    //     setImagePreview('');
-    //     setImage1('');
-    //     setImage2('');
-    //     setImage3('');
-    //     setImage4('');
-    // }
+
     return (
         <div className="createSpotContainer">
             <form onSubmit={handleSubmit}>
@@ -184,17 +195,35 @@ export default function CreateSpot() {
                     value={city}
                     type="text"
                     placeholder="City"
-                    onChange={(e) => setAddress(e.target.value)}/>
+                    onChange={(e) => setCity(e.target.value)}/>
                     {validationErrors.city && <p className="error">{validationErrors.city}</p>}
                     </div>
                     <div className="inputContainer">
                     <input 
                     value={state}
                     type="text"
-                    placeholder="STATE"
+                    placeholder="State"
                     onChange={(e) => setState(e.target.value)}/>
                     {validationErrors.state && <p className="error">{validationErrors.state}</p>}
                     </div>
+                </div>
+                <div className="latLongContainer">
+                <div className="inputContainer">Latitude
+                    <input 
+                    value={latitude}
+                    type="number"
+                    placeholder="Latitude"
+                    onChange={(e) => setLatitude(e.target.value)}/>
+                    {validationErrors.latitude && <p className="error">{validationErrors.latitude}</p>}
+                </div>
+                <div className="inputContainer">Longitude
+                    <input 
+                    value={longitude}
+                    type="number"
+                    placeholder="Longitude"
+                    onChange={(e) => setLatitude(e.target.value)}/>
+                    {validationErrors.longitude && <p className="error">{validationErrors.longitude}</p>}
+                </div>
                 </div>
                 </div>
             <div className="descriptionInfo">
