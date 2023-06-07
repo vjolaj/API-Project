@@ -58,6 +58,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    display: flex;
+    margin-top: 15px;
+    font-size: 14pt;
+    font-weight: bold;
 }
 
 
@@ -69,6 +73,7 @@
 .starRating {
     margin-right: 10px;
 }
+
 .reserveButton {
     width: 100%;
     margin-top: 20px;
@@ -106,4 +111,13 @@
 .reviewUser {
     font-size: 14pt;
     font-weight: bold;
+}
+
+.hiddenReviewContainer {
+    display: none
+}
+
+.noReviews {
+    display: flex;
+    align-items: center;
 }

@@ -10,7 +10,7 @@ export default function SpotDetail() {
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-//   console.log(reviews);
+  //   console.log(reviews);
 
   useEffect(() => {
     dispatch(spotDetailThunk(spotId));
@@ -42,34 +42,48 @@ export default function SpotDetail() {
       <div className="images">
         <div className="preview-image">
           <img
-            src={spot.spotImages && spot.spotImages.find((image) => image.preview).url}
+            src={
+              spot.spotImages &&
+              spot.spotImages.find((image) => image.preview).url
+            }
             alt="Preview Image of Spot"
           />
         </div>
         <div className="other-images">
-          {spot.spotImages && spot.spotImages
-            .filter((image) => !image.preview)
-            .map((image) => (
-              <img key={image.id} src={image.url} alt="Image of spot" />
-            ))}
+          {spot.spotImages &&
+            spot.spotImages
+              .filter((image) => !image.preview)
+              .map((image) => (
+                <img key={image.id} src={image.url} alt="Image of spot" />
+              ))}
         </div>
       </div>
       <div className="belowImages">
         <div className="belowImages-info">
           <div className="hostInfo">
-            Hosted by {spot.Owner && spot.Owner.firstName} {spot.Owner && spot.Owner.lastName}{" "}
+            Hosted by {spot.Owner && spot.Owner.firstName}{" "}
+            {spot.Owner && spot.Owner.lastName}{" "}
           </div>
           <div className="description"> {spot.description}</div>
         </div>
         <div className="reserve-container">
           <div className="price-reviews">
             <div className="price">${spot.price} night</div>
-            <div className="reviews">
-              <div className="starRating">
-                <i className="fa-solid fa-star"></i>
-                {spot.avgStarRating}
-              </div>
-              <div className="reviewCount">{spot.numReviews} reviews</div>
+            <div className={spot.numReviews === 0 ? "noReviews" : "reviews"}>
+              {spot.numReviews === 0 ? (
+                <div className="noReviews">
+                  <i className="fa-solid fa-star"></i>
+                  <div className="newListing">New</div>
+                </div>
+              ) : (
+                <div className="reviews">
+                <div className="starRating">
+                  <i className="fa-solid fa-star"></i>
+                  {spot.avgStarRating}
+                </div>
+                  <div className="reviewCount">{spot.numReviews} reviews</div>
+                </div>
+              )}
             </div>
           </div>
           <button className="reserveButton" onClick={handleReserveClick}>
@@ -78,13 +92,22 @@ export default function SpotDetail() {
         </div>
       </div>
       <div className="reviewsContainer">
-      <div className="mainReviews">
-              <div className="starRating">
+        <div className={spot.numReviews === 0 ? "noReviews" : "mainReviews"}>
+            {spot.numReviews === 0 ? (
+                 <div className="noReviews">
+                 <i className="fa-solid fa-star"></i>
+                 <div className="newListing">New</div>
+               </div>
+            ) : (
+                <div className="mainReviews">
+                <div className="starRating">
                 <i className="fa-solid fa-star"></i>
                 {spot.avgStarRating}
+                </div>
+                <div className="reviewCount">{spot.numReviews} reviews</div>
               </div>
-              <div className="reviewCount">{spot.numReviews} reviews</div>
-            </div>
+            )}
+        </div>
         {reviews &&
           reviews.map((review) => (
             <div className="individualReview" key={`review-${review.id}`}>
@@ -95,5 +118,4 @@ export default function SpotDetail() {
           ))}
       </div>
     </div>
-  );
-}
+)}
