@@ -75,19 +75,19 @@ export default function CreateSpot() {
         if (!imagePreview) {
             errorsObject.imagePreview = "Preview image is required."
         }
-        if (imagePreview && imagePreview.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
+        if (imagePreview && !imagePreview.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
             errorsObject.imagePreview = "Image URL must end in .png, .jpg, or .jpeg.";
         }
-        if (image1 && image1.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
+        if (image1 && !image1.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
             errorsObject.image1 = "Image URL must end in .png, .jpg, or .jpeg.";
         }
-        if (image2 && image2.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
+        if (image2 && !image2.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
             errorsObject.image2 = "Image URL must end in .png, .jpg, or .jpeg.";
         }
-        if (image3 && image3.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
+        if (image3 && !image3.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
             errorsObject.image3 = "Image URL must end in .png, .jpg, or .jpeg.";
         }
-        if (image4.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
+        if (image4 && !image4.match(/(\.png|\.jpg|\.jpeg)\s*$/)) {
             errorsObject.image4 = "Image URL must end in .png, .jpg, or .jpeg.";
         }
         setValidationErrors(errorsObject)
@@ -96,7 +96,14 @@ export default function CreateSpot() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (Object.values(validationErrors).length) {
+            return (
+                alert("Form data is invalid, please correct your submission.")
+            )
+        }
         setValidationErrors({})
+
         
         const spot = {address, city, state, country, lat: latitude, lng: longitude, name: title, description, price}
 
@@ -159,9 +166,6 @@ export default function CreateSpot() {
 
         newSpot && history.push(`/spots/${newSpot.id}`)
 
-        if (Object.values(validationErrors).length) {
-            return;
-        }
     }
     
 
