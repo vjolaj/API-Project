@@ -19,14 +19,14 @@ export default function ManageSpots () {
     return (
         <>
         {!spots ? <div className='manageSpotsHeader'>
-                <div>Manage Spots</div>
+                <div className="manageHeader">Manage Spots</div>
                 <Link to='/spots/new'>
                     <button className='addSpotButton'>Create a New Spot</button>
                 </Link>
             </div>
             :
             <div className='manageSpotsHeader'>
-                <div>Manage Spots</div>
+                <div className="manageHeader">Manage Spots</div>
                 <Link to='/spots/new'>
                     <button className='addSpotButton'>Create a New Spot</button>
                 </Link>
