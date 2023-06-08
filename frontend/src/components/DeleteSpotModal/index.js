@@ -12,11 +12,12 @@ function DeleteSpotModal ({spot}) {
     const history = useHistory();
 
     const handleSubmit = (e) => {
+      e.stopPropagation();
         e.preventDefault();
         setErrors({});
         return dispatch(deleteSpotThunk(spot.id))
-          .then(() => {
-            closeModal();
+        .then(() => {
+          closeModal();
           history.push('/spots/current')
           })
           .catch(async (res) => {
@@ -41,7 +42,11 @@ function DeleteSpotModal ({spot}) {
                 </button>
                 <button
                 id="noDelete"
-                onClick={closeModal}
+                onClick={((e) => {
+                  closeModal();
+                  e.stopPropagation();
+                  history.push('/spots/current')
+                  })}
                 >
                     No (Keep Spot)
                 </button>

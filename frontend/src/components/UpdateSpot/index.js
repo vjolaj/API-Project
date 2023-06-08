@@ -212,7 +212,7 @@ function UpdateSpot() {
                 {validationErrors.price && <p className="error">{validationErrors.price}</p>}
             </div>
         </div>
-        <button type='submit' className="submit">Create Spot</button>
+        <button type='submit' className="submit">Update Your Spot</button>
         </form>
     </div>
 )

@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {getUserSpotsThunk} from '../../store/spot'
 import './ManageSpots.css'
 import OpenModalButton from '../OpenModalButton'
 import DeleteSpotModal from '../DeleteSpotModal'
 
 
+
 export default function ManageSpots () {
+    const history = useHistory();
     const dispatch = useDispatch();
 	const spots = useSelector(state => state.spot.allSpots)
     console.log(spots)
@@ -42,12 +44,12 @@ export default function ManageSpots () {
             <Link to={`/spots/${spot.id}/edit`}>
                 <button id="updateButton">Update</button>
             </Link>
-            <button id="deleteButton">
                 <OpenModalButton
+                // onButtonClick={(e) => {e.stopPropagation()}}
+                id="deleteButton"
                 buttonText="Delete"
                 modalComponent={<DeleteSpotModal spot={spot} />}
                 />
-            </button>
           </div>
         </div>
         </Link>
