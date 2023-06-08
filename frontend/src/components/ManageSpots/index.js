@@ -39,10 +39,10 @@ export default function ManageSpots () {
           <p>City: {spot.city}, State: {spot.state}</p>
           <p>${spot.price} night</p>
           <div className='manageSpot-buttons'>
-            <Link to={`spots/${spot.id}/edit`}>
-                <button>Update</button>
+            <Link to={`/spots/${spot.id}/edit`}>
+                <button id="updateButton">Update</button>
             </Link>
-            <button>
+            <button id="deleteButton">
                 <OpenModalButton
                 buttonText="Delete"
                 modalComponent={<DeleteSpotModal spot={spot} />}

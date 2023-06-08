@@ -1,0 +1,16 @@
+.manageSpot-buttons {
+    display: flex;
+    
+}
+
+#updateButton {
+    width: 100%;
+    background-color: #999999;
+    border: 1px solid #000000
+}
+
+#deleteButton {
+    width: 100%;
+    background-color: #999999;
+    border: 1px solid #000000
+}
