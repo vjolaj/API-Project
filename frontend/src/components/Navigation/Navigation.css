@@ -36,3 +36,12 @@ button:first-child {
 .logo img {
     width: 100px;
 }
+
+.logInContainer {
+    display: flex;
+    align-items: center;
+}
+
+.createSpot {
+    margin-right: 10px;
+}

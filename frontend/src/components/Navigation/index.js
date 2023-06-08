@@ -15,8 +15,11 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <div className="logInContainer">
+      <NavLink to='/spots/new' className="createSpot">Create a New Spot</NavLink>
       <div className="userProfile nav">
         <ProfileButton user={sessionUser} />
+      </div>
       </div>
     );
   } else {
@@ -41,12 +44,6 @@ function Navigation({ isLoaded }) {
         <img src={logo} alt="Airbnb logo" />
       </div>
         </NavLink>
-        
-      <div className="home nav">
-        <NavLink exact to= "/spots/new">
-          Create spot
-        </NavLink>
-      </div>
       {isLoaded && sessionLinks}
     </div>
   );
