@@ -119,7 +119,7 @@ export default function CreateSpot() {
         if (image1) {
             const image1Obj = {
                 url: image1,
-                preview: true
+                preview: false
             }
             imageArray.push(image1Obj)
         }
