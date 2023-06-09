@@ -25,7 +25,7 @@ module.exports = {
       {
         spotId: 1,
         url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116698404433698826/la-apt-2.jpeg",
-        preview: true
+        preview: false
       },
       {
         spotId: 1,
@@ -55,12 +55,12 @@ module.exports = {
       {
         spotId: 2,
         url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116700652043776112/boston-apt-4.jpeg",
-        preview: true
+        preview: false
       },
       {
         spotId: 2,
         url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116700652308013106/boston-apt-5.jpeg",
-        preview: true
+        preview: false
       },
       {
         spotId: 3,
@@ -75,7 +75,7 @@ module.exports = {
       {
         spotId: 3,
         url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116701964496015481/miami-apt-3.webp",
-        preview: true
+        preview: false
       },
       {
         spotId: 3,
