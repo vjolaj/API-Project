@@ -4,13 +4,18 @@ import { spotDetailThunk } from "../../store/spot";
 import { spotReviewsThunk } from "../../store/review";
 import { useParams } from "react-router-dom";
 import "./SpotDetails.css";
+import OpenModalButton from '../OpenModalButton'
+import PostReviewModal from "../PostReviewModal";
 
 export default function SpotDetail() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-  //   console.log(reviews);
+    console.log(reviews); 
+  console.log(spot)
+  
 
   useEffect(() => {
     dispatch(spotDetailThunk(spotId));
@@ -107,6 +112,14 @@ export default function SpotDetail() {
                 <div className="reviewCount">{spot.numReviews} reviews</div>
               </div>
             )}
+        <div>
+              {user && user.id !== spot.ownerId && (!reviews.find((review) => review.userId === user.id)) && 
+               <OpenModalButton
+              //  id="deleteButton"
+               buttonText="Post Your Review"
+               modalComponent={<PostReviewModal spot={spot} user={user} />}
+               />}
+        </div>
         </div>
         {reviews &&
           reviews.map((review) => (
