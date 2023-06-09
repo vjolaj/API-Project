@@ -38,6 +38,14 @@ export default function SpotDetail() {
     alert("Feature Coming Soon...");
   };
 
+  const convertDate = (date) => {
+    const newDate = new Date(date)
+    const options = { month: 'long', day: 'numeric' };
+    const convertedDate = newDate.toLocaleString('en-US', options);
+    return convertedDate
+
+  }
+
   return (
     <div className="spot-container">
       <div className="name"> {spot.name}</div>
@@ -126,7 +134,7 @@ export default function SpotDetail() {
           reviews.map((review) => (
             <div className="individualReview" key={`review-${review.id}`}>
               <div className="reviewUser">{review.User.firstName}</div>
-              <div className="createdAt">{review.createdAt}</div>
+              <div className="createdAt">{convertDate(review.createdAt)}</div>
               <div className="reviewDescription">{review.review}</div>
               {user && review.userId === user.id 
               && <OpenModalButton
