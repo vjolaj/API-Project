@@ -108,10 +108,16 @@ export default function SpotDetail() {
       <div className="reviewsContainer">
         <div className={spot.numReviews === 0 ? "noReviews" : "mainReviews"}>
             {spot.numReviews === 0 ? (
+              <div className="noReviewsContainer">
                  <div className="noReviews">
                  <i className="fa-solid fa-star"></i>
                  <div className="newListing">New</div>
                </div>
+               {user && user.id !== spot.ownerId 
+               && <div className="beTheFirst">Be the first to post a review!</div>
+               }
+               </div>
+               
             ) : (
                 <div className="mainReviews">
                 <div className="starRating">
