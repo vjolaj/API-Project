@@ -16,19 +16,6 @@
     margin: 15px;
 }
 
-.images-container  {
-    display: flex;
-    flex-direction: row;
-}
-
-.preview-image {
-    height: 200px;
-    width: auto;
-}
-
-.other-images {
-    height: 200px
-}
 
 .description {
     font-size: 14px;
@@ -124,3 +111,21 @@
 .beTheFirst {
     margin-top: 20px
 }
+
+.preview-image {
+    width: 50%;
+}
+
+.other-image {
+    width: 25%
+}
+
+/* .images-container {
+    display: flex;
+}
+  
+  .other-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  } */

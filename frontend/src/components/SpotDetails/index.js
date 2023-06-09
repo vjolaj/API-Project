@@ -53,9 +53,10 @@ export default function SpotDetail() {
         {" "}
         {spot.city}, {spot.state}, {spot.country}{" "}
       </div>
-      <div className="images">
-        <div className="preview-image">
+      <div className="images-container">
+        <div>
           <img
+          className="preview-image"
             src={
               spot.spotImages &&
               spot.spotImages.find((image) => image.preview).url
@@ -68,7 +69,7 @@ export default function SpotDetail() {
             spot.spotImages
               .filter((image) => !image.preview)
               .map((image) => (
-                <img key={image.id} src={image.url} alt="Image of spot" />
+                <img className="other-image" key={image.id} src={image.url} alt="Image of spot" />
               ))}
         </div>
       </div>
