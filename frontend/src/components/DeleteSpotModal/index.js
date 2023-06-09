@@ -12,7 +12,6 @@ function DeleteSpotModal ({spot}) {
     const history = useHistory();
 
     const handleSubmit = (e) => {
-        e.stopPropagation();
         e.preventDefault();
         setErrors({});
         return dispatch(deleteSpotThunk(spot.id))
