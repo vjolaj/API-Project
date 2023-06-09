@@ -23,7 +23,7 @@ module.exports = {
           lat: 34.069839,
           lng: -118.403659,
           name: "Quaint LA apartment",
-          description: "Quaint LA aparment close to Rodeo Drive",
+          description: "Quaint LA apartment close to Rodeo Drive",
           price: 123
         },
         {

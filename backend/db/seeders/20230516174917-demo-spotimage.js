@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         spotId: 1,
-        url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116698404433698826/la-apt-2.jpeg",
+        url: "https://cdn.discordapp.com/attachments/1116216556800716822/1116770085630136470/la-apt-useThis.jpeg",
         preview: false
       },
       {
