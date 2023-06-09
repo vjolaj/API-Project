@@ -95,7 +95,7 @@ export default function SpotDetail() {
                   <i className="fa-solid fa-star"></i>
                   {spot.avgStarRating}
                 </div>
-                  <div className="reviewCount">{spot.numReviews} reviews</div>
+                  {spot.numReviews === 1 ? <div className="reviewCount">{spot.numReviews} review</div> : <div className="reviewCount">{spot.numReviews} reviews</div>}
                 </div>
               )}
             </div>
@@ -118,8 +118,8 @@ export default function SpotDetail() {
                 <i className="fa-solid fa-star"></i>
                 {spot.avgStarRating}
                 </div>
-                <div className="reviewCount">{spot.numReviews} reviews</div>
-              </div>
+                  {spot.numReviews === 1 ? <div className="reviewCount">{spot.numReviews} review</div> : <div className="reviewCount">{spot.numReviews} reviews</div>}
+                </div>
             )}
         <div>
               {user && user.id !== spot.ownerId && (!reviews.find((review) => review.userId === user.id)) && 
