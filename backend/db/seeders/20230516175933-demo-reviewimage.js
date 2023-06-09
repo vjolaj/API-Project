@@ -57,16 +57,9 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        url: {
+        reviewId: {
           [Op.in]: [
-            "reviewImageOne_url",
-            "reviewImageTwo_url",
-            "reviewImageThree_url",
-            "reviewImageFour_url",
-            "reviewImageFive_url",
-            "reviewImageSix_url",
-            "reviewImageSeven_url",
-            "reviewImageEight_url"
+            1, 2, 3, 4, 5, 6, 7, 8
           ],
         },
       },
