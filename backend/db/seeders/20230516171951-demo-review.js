@@ -23,7 +23,7 @@ module.exports = {
         {
           spotId: 1, //reviewId: 2
           userId: 3,
-          review: "Had a great stay here!",
+          review: "This is such a nice little spot!",
           stars: 4,
         },
         {
@@ -59,7 +59,7 @@ module.exports = {
         {
           spotId: 2, //reviewId: 8
           userId: 4,
-          review: "Had a lovely stay here!",
+          review: "Great place, lots of amenities!",
           stars: 5,
         },
       ],
