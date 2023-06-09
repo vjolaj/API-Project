@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import "./SpotDetails.css";
 import OpenModalButton from '../OpenModalButton'
 import PostReviewModal from "../PostReviewModal";
+import DeleteReviewModal from "../DeleteReviewModal";
 
 export default function SpotDetail() {
   const { spotId } = useParams();
@@ -127,6 +128,13 @@ export default function SpotDetail() {
               <div className="reviewUser">{review.User.firstName}</div>
               <div className="createdAt">{review.createdAt}</div>
               <div className="reviewDescription">{review.review}</div>
+              {user && review.userId === user.id 
+              && <OpenModalButton
+              buttonText="Delete Your Review"
+                modalComponent={<DeleteReviewModal spot={spot} review={review}
+                 />}
+              />
+              }
             </div>
           ))}
       </div>

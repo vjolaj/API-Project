@@ -26,7 +26,7 @@ function PostReviewModal({ user, spot }) {
       errors.stars = "Please input a star rating";
     }
     if (comment && comment.length < 10) {
-      errors.stars = "Comment needs a minimum of 10 characters";
+      errors.comment = "Comment needs a minimum of 10 characters";
     }
     setErrors(errors);
   }, [stars, comment]);
@@ -71,7 +71,7 @@ function PostReviewModal({ user, spot }) {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           className="comment-input"
-          placeholder="Just a quick review."
+          placeholder="Leave your review here..."
         />
       </label>
       {errors.comment && <p>{errors.comment}</p>}
