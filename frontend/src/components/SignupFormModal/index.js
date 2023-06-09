@@ -43,7 +43,7 @@ function SignupFormModal() {
   };
 
   useEffect(() => {
-    if (!email.length || !username.length || !firstName.length || !lastName.length || !password.length || !confirmPassword.length) {
+    if (!email.length || !username.length || username.length < 4 || !firstName.length || !lastName.length || !password.length || password.length < 6 || !confirmPassword.length) {
       setDisabled(true)
     } else {
       setDisabled(false)}
