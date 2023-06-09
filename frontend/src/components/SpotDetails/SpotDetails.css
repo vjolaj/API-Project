@@ -50,6 +50,10 @@
     font-size: 14pt;
 }
 
+.spotContainer {
+    max-width: 1000px;
+}
+
 
 .reviews {
     display: flex;
@@ -113,19 +117,36 @@
 }
 
 .preview-image {
-    width: 50%;
+    width: 500px;
+    display: flex;
+}
+
+.preview-image img {
+    width: 100%;
 }
 
 .other-image {
-    width: 25%
+    width: 40%
 }
 
-/* .images-container {
+.images-container {
+    margin-bottom: 15px;
     display: flex;
+    max-width: 1000px;
 }
   
-  .other-images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  } */
+.other-images {
+    display: flex;
+    max-width: 500px;
+    flex-flow: row wrap;
+}  
+
+.other-image {
+    margin: 5px 5px;
+    flex-basis: calc(50%-20px)
+}
+
+.other-image img {
+    width: 100%;
+    height: auto;
+}

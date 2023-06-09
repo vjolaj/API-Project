@@ -40,7 +40,7 @@ export default function SpotDetail() {
 
   const convertDate = (date) => {
     const newDate = new Date(date)
-    const options = { month: 'long', day: 'numeric' };
+    const options = { month: 'long', year: 'numeric' };
     const convertedDate = newDate.toLocaleString('en-US', options);
     return convertedDate
 
