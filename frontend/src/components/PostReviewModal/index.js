@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { spotDetailThunk } from "../../store/spot";
+import { spotReviewsThunk } from "../../store/review";
 import "./PostReviewModal.css";
 import "./StarsRating"
 import { createReviewThunk } from "../../store/review";
@@ -49,7 +51,8 @@ function PostReviewModal({ user, spot }) {
     return dispatch(createReviewThunk(spot.id, submittedReview))
       .then(() => {
         closeModal();
-        // history.push('/spots/current')
+        dispatch(spotDetailThunk(spot.id));
+        dispatch(spotReviewsThunk(spot.id));
       })
       .catch(async (res) => {
         const data = await res.json();

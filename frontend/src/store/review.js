@@ -13,7 +13,7 @@ const getSpotReviews = reviews => ({
 })
 
 const getUserReviews = reviews => ({
-    type: GET_REVIEW_DETAILS,
+    type: GET_CURRENT_USER_REVIEWS,
     reviews
 })
 
@@ -40,7 +40,7 @@ export const getCurrentUserReviewsThunk = (review) => async (dispatch) => {
     const reviews = await res.json();
     if (res.ok) {
         dispatch(getUserReviews(reviews["Reviews"]))
-        return spots;
+        return reviews;
     } else {
         const errorData = await res.json()
         return errorData
@@ -49,7 +49,7 @@ export const getCurrentUserReviewsThunk = (review) => async (dispatch) => {
 
 export const createReviewThunk = (spotId, review) => async (dispatch) => {
     try {
-        const res = await csrfFetch(`api/spots/${spotId}/reviews`, {
+        const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export const createReviewThunk = (spotId, review) => async (dispatch) => {
 }
 
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spotId}`, {
+    const res = await csrfFetch(`/api/spots/${reviewId}`, {
         method: 'DELETE'
     })
     if (res.ok) {
