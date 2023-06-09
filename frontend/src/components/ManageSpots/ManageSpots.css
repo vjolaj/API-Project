@@ -1,11 +1,14 @@
+
+
 .manageSpot-buttons {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    width: 100%;
     
 }
 
 #updateButton {
-    width: 100%;
+    /* width: 100%; */
     background-color: #999999;
     border: 1px solid #000000
 }
@@ -21,10 +24,11 @@
 .manageHeader {
     font-size: 24px;
     font-weight: bold;
-    margin: 10px
+    margin: 10px;
+    margin-left: 20px;
 }
 
 .addSpotButton {
-    margin-left: 10px;
     margin-bottom: 10px;
+    margin-left: 20px;
 }

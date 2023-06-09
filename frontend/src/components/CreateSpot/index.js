@@ -24,6 +24,8 @@ export default function CreateSpot() {
     const [image3, setImage3] = useState("")
     const [image4, setImage4] = useState("")
     const [validationErrors, setValidationErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
+
 
     useEffect(() => {
         const errorsObject = {};
@@ -96,6 +98,7 @@ export default function CreateSpot() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitted(true)
 
         if (Object.values(validationErrors).length) {
             return (
@@ -119,7 +122,7 @@ export default function CreateSpot() {
         if (image1) {
             const image1Obj = {
                 url: image1,
-                preview: true
+                preview: false
             }
             imageArray.push(image1Obj)
         }
@@ -146,7 +149,7 @@ export default function CreateSpot() {
         }
 
         const newSpot = await dispatch(createSpotThunk(spot, owner, imageArray));
-        console.log(newSpot)
+        // console.log(newSpot)
 
         setCity('');
         setCountry('');
@@ -168,7 +171,6 @@ export default function CreateSpot() {
 
     }
     
-
     return (
         <div className="createSpotContainer">
             <form onSubmit={handleSubmit}>
@@ -182,7 +184,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Country"
                     onChange={(e) => setCountry(e.target.value)}/>
-                    {validationErrors.country && <p className="error">{validationErrors.country}</p>}
+                    {submitted && validationErrors.country && <p className="error">{validationErrors.country}</p>}
                 </div>
                 <div className="inputContainer">
                     <input 
@@ -190,7 +192,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Address"
                     onChange={(e) => setAddress(e.target.value)}/>
-                    {validationErrors.address && <p className="error">{validationErrors.address}</p>}
+                    {submitted && validationErrors.address && <p className="error">{validationErrors.address}</p>}
                 </div>
                 <div className="cityStateContainer">
                     <div className="inputContainer">
@@ -199,7 +201,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="City"
                     onChange={(e) => setCity(e.target.value)}/>
-                    {validationErrors.city && <p className="error">{validationErrors.city}</p>}
+                    {submitted && validationErrors.city && <p className="error">{validationErrors.city}</p>}
                     </div>
                     <div className="inputContainer">
                     <input 
@@ -207,7 +209,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="State"
                     onChange={(e) => setState(e.target.value)}/>
-                    {validationErrors.state && <p className="error">{validationErrors.state}</p>}
+                    {submitted && validationErrors.state && <p className="error">{validationErrors.state}</p>}
                     </div>
                 </div>
                 <div className="latLongContainer">
@@ -217,7 +219,7 @@ export default function CreateSpot() {
                     type="number"
                     placeholder="Latitude"
                     onChange={(e) => setLatitude(e.target.value)}/>
-                    {validationErrors.latitude && <p className="error">{validationErrors.latitude}</p>}
+                    {submitted && validationErrors.latitude && <p className="error">{validationErrors.latitude}</p>}
                 </div>
                 <div className="inputContainer">Longitude
                     <input 
@@ -225,7 +227,7 @@ export default function CreateSpot() {
                     type="number"
                     placeholder="Longitude"
                     onChange={(e) => setLatitude(e.target.value)}/>
-                    {validationErrors.longitude && <p className="error">{validationErrors.longitude}</p>}
+                    {submitted && validationErrors.longitude && <p className="error">{validationErrors.longitude}</p>}
                 </div>
                 </div>
                 </div>
@@ -238,7 +240,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Description"
                     onChange={(e) => setDescription(e.target.value)}/>
-                    {validationErrors.description && <p className="error">{validationErrors.description}</p>}
+                    {submitted && validationErrors.description && <p className="error">{validationErrors.description}</p>}
                 </div>
             </div>
             <div className="titleInfo">
@@ -250,7 +252,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Name of your spot"
                     onChange={(e) => setTitle(e.target.value)}/>
-                    {validationErrors.title && <p className="error">{validationErrors.title}</p>}
+                    {submitted && validationErrors.title && <p className="error">{validationErrors.title}</p>}
                 </div>
             </div>
             <div className="priceInfo">
@@ -263,7 +265,7 @@ export default function CreateSpot() {
                     type="number"
                     placeholder="Price per night (USD)"
                     onChange={(e) => setPrice(e.target.value)}/>
-                    {validationErrors.price && <p className="error">{validationErrors.price}</p>}
+                    {submitted && validationErrors.price && <p className="error">{validationErrors.price}</p>}
                 </div>
             </div>
             <div className="imagesInfo">
@@ -275,7 +277,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Preview Image URL"
                     onChange={(e) => setImagePreview(e.target.value)}/>
-                    {validationErrors.imagePreview && <p className="error">{validationErrors.imagePreview}</p>}
+                    {submitted && validationErrors.imagePreview && <p className="error">{validationErrors.imagePreview}</p>}
                 </div>
                 <div className="inputContainer">
                     <input 
@@ -283,7 +285,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Image URL"
                     onChange={(e) => setImage1(e.target.value)}/>
-                    {validationErrors.image1 && <p className="error">{validationErrors.image1}</p>}
+                    {submitted && validationErrors.image1 && <p className="error">{validationErrors.image1}</p>}
                 </div>
                 <div className="inputContainer">
                     <input 
@@ -291,7 +293,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Image URL"
                     onChange={(e) => setImage2(e.target.value)}/>
-                    {validationErrors.image2 && <p className="error">{validationErrors.image2}</p>}
+                    {submitted && validationErrors.image2 && <p className="error">{validationErrors.image2}</p>}
                 </div>
                 <div className="inputContainer">
                     <input 
@@ -299,7 +301,7 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Image URL"
                     onChange={(e) => setImage3(e.target.value)}/>
-                    {validationErrors.image3 && <p className="error">{validationErrors.image3}</p>}
+                    {submitted && validationErrors.image3 && <p className="error">{validationErrors.image3}</p>}
                 </div>
                 <div className="inputContainer">
                     <input 
@@ -307,10 +309,10 @@ export default function CreateSpot() {
                     type="text"
                     placeholder="Image URL"
                     onChange={(e) => setImage4(e.target.value)}/>
-                    {validationErrors.image4 && <p className="error">{validationErrors.image4}</p>}
+                    {submitted && validationErrors.image4 && <p className="error">{validationErrors.image4}</p>}
                 </div>
             </div>
-            <button type='submit' className="submit">Create Spot</button>
+            <button type='submit' className="submit-button">Create Spot</button>
             </form>
         </div>
     )
