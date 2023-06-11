@@ -1,31 +1,45 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import {allSpotsThunk} from '../../store/spot'
-import './SpotsIndex.css'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { allSpotsThunk } from "../../store/spot";
+import "./SpotsIndex.css";
 
-export default function SpotsIndex () {
-	const dispatch = useDispatch()
-	const spots = useSelector(state => state.spot.allSpots)
-    // console.log(spots)
+export default function SpotsIndex() {
+  const dispatch = useDispatch();
+  const spots = useSelector((state) => state.spot.allSpots);
 
+  useEffect(() => {
+    dispatch(allSpotsThunk());
+  }, [dispatch]);
 
-	useEffect(() => {
-		dispatch(allSpotsThunk())
-	}, [dispatch])
-
-return (
-    <div className='spots-container'>
-      {spots && spots.map(spot => (
-        <Link to={`/spots/${spot.id}`} key={`spot-${spot.id}`}>
-        <div className='spot'>
-          <img src={spot.previewImage} alt="Spot Preview" />
-          <h2>{spot.name}</h2>
-          <p>City: {spot.city}, State: {spot.state}</p>
-          <p>${spot.price} night</p>
-        </div>
-        </Link>
-      ))}
+  return (
+    <div className="spots-container">
+      {spots &&
+        spots.map((spot) => (
+          <Link to={`/spots/${spot.id}`} key={`spot-${spot.id}`}>
+            <div className="spot">
+              <img src={spot.previewImage} alt="Spot Preview" />
+              <div className="location-and-rating">
+              <p>
+                {spot.city}, {spot.state}
+              </p>
+              {spot.avgStarRating === "NaN" ? (
+                <div className="reviews">
+                  <i className="fa-solid fa-star"></i>
+                  <div className="newListing">New</div>
+                </div>
+              ) : (
+                <div className="reviews">
+                    <i className="fa-solid fa-star"></i>
+                    <div className="avgRating">{spot.avgStarRating}</div>
+                </div>
+              )}
+              </div>
+              <div className="price-container">
+                <div className="price">${spot.price}</div> night</div>
+            </div>
+          </Link>
+        ))}
     </div>
   );
 }
