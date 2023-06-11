@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
     );
   } else {
     sessionLinks = (
-      <div>
+      <div className="navLinks">
         <OpenModalButton
         id="logInButton"
           buttonText="Log In"

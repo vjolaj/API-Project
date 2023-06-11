@@ -35,4 +35,24 @@ ul {
 .manage {
     padding-bottom: 5px;
     padding-top: 5px;
+    border-bottom: 1px solid #999999;
+}
+
+li > button {
+    border: none;
+    text-align: center;
+    background-color: #999999;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    border: 1px solid black;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.logOut {
+    margin-left: auto;
+    margin-right: auto;
 }

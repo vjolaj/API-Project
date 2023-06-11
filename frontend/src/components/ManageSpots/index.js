@@ -35,14 +35,28 @@ export default function ManageSpots() {
             {spots &&
               spots.map((spot) => (
                 <div className="spot-container">
-                  <Link to={`/spots/${spot.id}`} key={`spot-${spot.id}`}>
-                    <div className="spot">
+                  <Link to={`/spots/${spot.id}`}>
+                    <div className="spot" title={spot.name}>
                       <img src={spot.previewImage} alt="Spot Preview" />
-                      <h2>{spot.name}</h2>
-                      <p>
-                        City: {spot.city}, State: {spot.state}
-                      </p>
-                      <p>${spot.price} night</p>
+                      <div className="location-and-rating">
+              <p>
+                {spot.city}, {spot.state}
+              </p>
+              {spot.avgStarRating === "NaN" ? (
+                <div className="reviews">
+                  <i className="fa-solid fa-star"></i>
+                  <div className="newListing">New</div>
+                </div>
+              ) : (
+                <div className="reviews">
+                    <i className="fa-solid fa-star"></i>
+                    <div className="avgRating">{spot.avgStarRating}</div>
+                </div>
+              )}
+              </div>
+              <div className="price-container">
+                <div className="price">${spot.price}</div> night</div>
+            
                     </div>
                   </Link>
                   <div className="manageSpot-buttons">

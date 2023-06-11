@@ -11,7 +11,7 @@
     margin-left: 25px;
 }
 
-button:first-child,
+/* button:first-child,
 button:nth-child(2) {
     border: none;
     text-align: center;
@@ -20,7 +20,7 @@ button:nth-child(2) {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-}
+} */
 
 button:first-child {
     margin-right: 10px;
@@ -46,4 +46,23 @@ button:first-child {
 
 .createSpot {
     margin-right: 10px;
+}
+
+.userProfile > button {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: #FF5A5F;
+    cursor: pointer;
+}
+
+.navLinks > button {
+    border: none;
+    text-align: center;
+    background-color: #FF5A5F;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
 }
