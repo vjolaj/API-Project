@@ -5,12 +5,11 @@
     grid-auto-flow: row;
     width: 350px;
     align-items: center;
-    border-radius: 20px;
-    border: 1px solid black;
-    padding: 20px;
+    padding: 10px 40px 10px 40px;
     font-family: 'Manrope', sans-serif;
     margin: 20px auto; 
 }
+
 
 .logIn {
     font-size: 24pt;

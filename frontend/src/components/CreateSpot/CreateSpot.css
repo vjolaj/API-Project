@@ -52,6 +52,8 @@ input {
 
 .locationInfo {
     border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .locationText {
@@ -110,6 +112,12 @@ input {
     margin-bottom: 15px
 }
 
+.imagesInfo {
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
 .imagesText {
     font-size: 14px;
     margin-bottom: 15px;
@@ -118,34 +126,45 @@ input {
 
 .descriptionInfo {
     border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .titleInfo {
     border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .priceInfo {
     border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 
-.submit {
+.submit-button {
     color: black;
     border-radius: 3px;
     margin-bottom: 15px;
     padding: 10px 18px;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
     border: 1px solid #000000;
     background-color: rgb(218, 156, 156);
     color: white;
     opacity: 0.8;
-    font-family: 'Manrope', sans-serif;
 }
 
 
-.submit:hover {
+.submit-button:hover {
     opacity: 0.8;
     background-color: #FF5A5F;
     color: white;
 } 
+
+.submitContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
