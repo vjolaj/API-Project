@@ -122,7 +122,7 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}
-        <button className={disabled ? "submit-button-inactive" : "submit-button"} type="submit" disabled={disabled}>Sign Up</button>
+        <button className={disabled ? "createUser-button-inactive" : "createUser-button"} type="submit" disabled={disabled}>Sign Up</button>
       </form>
     </>
   );

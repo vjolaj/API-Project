@@ -6,7 +6,6 @@
   width: 350px;
   align-items: center;
   padding: 10px 40px 10px 40px;
-  font-family: "Manrope", sans-serif;
   margin: 20px auto;
 }
 
@@ -26,7 +25,7 @@
     margin-bottom: 10px;
 }
 
-#createUser-button {
+.createUser-button {
     color: black;
     padding: 16px 20px;
     cursor: pointer;
@@ -40,9 +39,14 @@
     color: white;
 }
 
-#createUser-button:hover {
+.createUser-button:hover {
     opacity: 0.8;
     background-color: #FF5A5F;
     color: white;
 }
 
+.createUser-button-inactive {
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 10px 18px;
+}

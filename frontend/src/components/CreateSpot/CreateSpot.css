@@ -168,3 +168,7 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+.priceContainer > input {
+    margin-left: 5px;
+}
