@@ -238,7 +238,7 @@ export default function CreateSpot() {
                     <input 
                     value={description}
                     type="text"
-                    placeholder="Description"
+                    placeholder="Please write at least 30 characters."
                     onChange={(e) => setDescription(e.target.value)}/>
                     {submitted && validationErrors.description && <p className="error">{validationErrors.description}</p>}
                 </div>
@@ -264,8 +264,8 @@ export default function CreateSpot() {
                     type="number"
                     placeholder="Price per night (USD)"
                     onChange={(e) => setPrice(e.target.value)}/>
-                    {submitted && validationErrors.price && <p className="error">{validationErrors.price}</p>}
                 </div>
+                    {submitted && validationErrors.price && <p className="error">{validationErrors.price}</p>}
             </div>
             <div className="imagesInfo">
                 <div className="imagesHeader">Liven up your spot with photos</div>
