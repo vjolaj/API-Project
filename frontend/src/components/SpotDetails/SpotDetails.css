@@ -60,7 +60,7 @@
 }
 
 .starRating {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .reserveButton {
@@ -214,4 +214,9 @@
     opacity: 0.8;
     background-color: #FF5A5F;
     color: white;
+}
+
+.dot {
+    margin-right: 5px;
+    font-weight: bold;
 }
