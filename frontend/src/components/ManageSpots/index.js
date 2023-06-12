@@ -64,7 +64,6 @@ export default function ManageSpots() {
                       <button id="updateButton">Update</button>
                     </Link>
                     <OpenModalButton
-                      id="deleteButton"
                       buttonText="Delete"
                       modalComponent={<DeleteSpotModal spot={spot} />}
                     />
