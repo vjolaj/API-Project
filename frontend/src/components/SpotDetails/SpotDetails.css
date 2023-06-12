@@ -1,13 +1,15 @@
 .name  {
     font-size: 24px;
     font-weight: bold;
-    margin: 15px
+    margin: 15px;
+    margin-left: 30px;
 }
 
 .location {
     font-size: 18px;
     font-weight: bold;
     margin: 15px;
+    margin-left: 30px;
 }
 
 .hostInfo {
@@ -18,7 +20,6 @@
 
 
 .description {
-    font-size: 14px;
     margin: 15px;
 }
 
@@ -37,8 +38,7 @@
     border-radius: 20px;
     padding: 20px;
     width: 300px;
-    margin-right: 15px;
-    font-size: 14pt;
+    margin-right: 35px;
 }
 
 .price-reviews {
@@ -47,7 +47,6 @@
     align-items: center;
     display: flex;
     margin-top: 15px;
-    font-size: 14pt;
 }
 
 .spotContainer {
@@ -61,24 +60,35 @@
 }
 
 .starRating {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .reserveButton {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 20px;    
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(218, 156, 156);
+    border: 1px solid #000000;
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
 }
 
 .reviewsContainer {
     margin: 15px;
     border-top: 1px solid #999999;
+    margin-left: 20px;
+    padding-top: 25px;
 }
 
 .mainReviews {
     display: flex;
-    margin-top: 15px;
-    font-size: 14pt;
     font-weight: bold;
+    margin-left: 5px;
+    /* margin-bottom: 5px; */
 }
 
 .individualReview {
@@ -94,12 +104,8 @@
     font-size: 12pt;
 }
 
-.reviewDescription {
-    font-size: 14pt;
-}
-
 .reviewUser {
-    font-size: 14pt;
+
     font-weight: bold;
 }
 
@@ -112,27 +118,38 @@
     align-items: center;
 }
 
+.noReviewsContainer {
+    margin-left: 10px;
+}
+
+
 .beTheFirst {
-    margin-top: 20px
+    margin-top: 15px;
+    margin-bottom: 10px
 }
 
 .preview-image {
-    width: 500px;
+    max-width: 500px;
     display: flex;
 }
 
 .preview-image img {
     width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .other-image {
-    width: 40%
+    width: 44%;
+    object-fit: cover;
+
 }
 
 .images-container {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     display: flex;
     max-width: 1000px;
+    margin-left: 30px;
 }
   
 .other-images {
@@ -142,11 +159,64 @@
 }  
 
 .other-image {
-    margin: 5px 5px;
+    margin: 2px 2px 2px 3px;
     flex-basis: calc(50%-20px)
 }
 
 .other-image img {
     width: 100%;
     height: auto;
+}
+
+.individualReview > button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #afaeae;
+    border: 1px solid #000000;
+    cursor: pointer;
+    color: white;
+    width: 15%;
+    margin-top: 5px;
+}
+
+.postYourReview {
+    display: flex;
+    margin-left: 10px;
+    margin-bottom: 20px
+}
+
+.postYourReview > button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #afaeae;
+    border: 1px solid #000000;
+    cursor: pointer;
+    color: white;
+    width: 15%;
+    margin-top: 5px;
+}
+
+.postYourReview > button:hover {
+    opacity: 0.8;
+    background-color: #7a7a7a;
+    color: white;
+}
+
+.individualReview > button:hover {
+    opacity: 0.8;
+    background-color: #7a7a7a;
+    color: white;
+}
+
+.reserveButton:hover {
+    opacity: 0.8;
+    background-color: #FF5A5F;
+    color: white;
+}
+
+.dot {
+    margin-right: 5px;
+    font-weight: bold;
 }

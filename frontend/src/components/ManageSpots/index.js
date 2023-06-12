@@ -10,7 +10,7 @@ export default function ManageSpots() {
   const history = useHistory();
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spot.allSpots);
-  console.log(spots);
+  // console.log(spots);
 
   useEffect(() => {
     dispatch(getUserSpotsThunk());
@@ -28,21 +28,35 @@ export default function ManageSpots() {
       ) : (
         <div className="manageSpotsHeader">
           <div className="manageHeader">Manage Spots</div>
-          <Link to="/spots/new">
+          {<Link to="/spots/new">
             <button className="addSpotButton">Create a New Spot</button>
-          </Link>
+          </Link>}
           <div id="spots-container">
             {spots &&
               spots.map((spot) => (
                 <div className="spot-container">
-                  <Link to={`/spots/${spot.id}`} key={`spot-${spot.id}`}>
-                    <div className="spot">
+                  <Link to={`/spots/${spot.id}`}>
+                    <div className="spot" title={spot.name}>
                       <img src={spot.previewImage} alt="Spot Preview" />
-                      <h2>{spot.name}</h2>
-                      <p>
-                        City: {spot.city}, State: {spot.state}
-                      </p>
-                      <p>${spot.price} night</p>
+                      <div className="location-and-rating">
+              <p>
+                {spot.city}, {spot.state}
+              </p>
+              {spot.avgStarRating === "NaN" ? (
+                <div className="reviews">
+                  <i className="fa-solid fa-star"></i>
+                  <div className="newListing">New</div>
+                </div>
+              ) : (
+                <div className="reviews">
+                    <i className="fa-solid fa-star"></i>
+                    <div className="avgRating">{spot.avgStarRating}</div>
+                </div>
+              )}
+              </div>
+              <div className="price-container">
+                <div className="price">${spot.price}</div> night</div>
+            
                     </div>
                   </Link>
                   <div className="manageSpot-buttons">
@@ -50,7 +64,6 @@ export default function ManageSpots() {
                       <button id="updateButton">Update</button>
                     </Link>
                     <OpenModalButton
-                      id="deleteButton"
                       buttonText="Delete"
                       modalComponent={<DeleteSpotModal spot={spot} />}
                     />

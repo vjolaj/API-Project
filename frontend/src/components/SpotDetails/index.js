@@ -14,8 +14,8 @@ export default function SpotDetail() {
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-    console.log(reviews); 
-  console.log(spot)
+  //   console.log(reviews); 
+  // console.log(spot)
   
 
   useEffect(() => {
@@ -96,6 +96,7 @@ export default function SpotDetail() {
                   <i className="fa-solid fa-star"></i>
                   {spot.avgStarRating}
                 </div>
+                <div className="dot">·</div>
                   {spot.numReviews === 1 ? <div className="reviewCount">{spot.numReviews} review</div> : <div className="reviewCount">{spot.numReviews} reviews</div>}
                 </div>
               )}
@@ -125,17 +126,18 @@ export default function SpotDetail() {
                 <i className="fa-solid fa-star"></i>
                 {spot.avgStarRating}
                 </div>
+                <div className="dot">·</div>
                   {spot.numReviews === 1 ? <div className="reviewCount">{spot.numReviews} review</div> : <div className="reviewCount">{spot.numReviews} reviews</div>}
                 </div>
             )}
-        <div>
+        </div>
+        <div className="postYourReview">
               {user && user.id !== spot.ownerId && (!reviews.find((review) => review.userId === user.id)) && 
                <OpenModalButton
               //  id="deleteButton"
                buttonText="Post Your Review"
                modalComponent={<PostReviewModal spot={spot} user={user} />}
                />}
-        </div>
         </div>
         {reviews &&
           reviews.map((review) => (

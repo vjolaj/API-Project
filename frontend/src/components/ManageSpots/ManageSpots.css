@@ -1,34 +1,63 @@
+#spots-container {
+    display: flex;
+    margin-left: 18px;
+}
 
+.spot {
+    margin-bottom: 0px;
+}
 
 .manageSpot-buttons {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-    
+    margin-left: 8px;
 }
 
 #updateButton {
-    /* width: 100%; */
-    background-color: #999999;
-    border: 1px solid #000000
+    background-color: #afaeae;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #999999;
+    cursor: pointer;
+    color: white;
 }
 
-#deleteButton {
-    width: 100%;
+#updateButton:hover {
     background-color: #999999;
-    border: 1px solid #000000;
-    padding: 0px;
-    margin: 0px
+}
+
+.manageSpot-buttons > button {
+    background-color: #afaeae;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #999999;
+    cursor: pointer;
+}
+
+.manageSpot-buttons > button:hover {
+    background-color: #999999;
 }
 
 .manageHeader {
     font-size: 24px;
     font-weight: bold;
-    margin: 10px;
-    margin-left: 20px;
+    margin: 20px 30px;
 }
 
 .addSpotButton {
-    margin-bottom: 10px;
-    margin-left: 20px;
+    margin: 0px 30px 15px 30px;
+    background-color: #afaeae;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px 1px #999999;
+    cursor: pointer;
+    color: white;
+}
+
+.addSpotButton:hover {
+    background-color: #999999;
 }

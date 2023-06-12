@@ -122,7 +122,7 @@ function UpdateSpot() {
             <div className="locationInfo">
                 <div className="locationHeader">Where's your place located?</div>
                 <div className="locationText">Guests will only get your exact address once they booked a reservation.</div>
-            <div className="inputContainer">
+            <div className="inputContainer">Country
                 <input 
                 value={country}
                 type="text"
@@ -130,7 +130,7 @@ function UpdateSpot() {
                 onChange={(e) => setCountry(e.target.value)}/>
                 {validationErrors.country && <p className="error">{validationErrors.country}</p>}
             </div>
-            <div className="inputContainer">
+            <div className="inputContainer">Address
                 <input 
                 value={address}
                 type="text"
@@ -139,7 +139,7 @@ function UpdateSpot() {
                 {validationErrors.address && <p className="error">{validationErrors.address}</p>}
             </div>
             <div className="cityStateContainer">
-                <div className="inputContainer">
+                <div className="inputContainer">City
                 <input 
                 value={city}
                 type="text"
@@ -147,7 +147,7 @@ function UpdateSpot() {
                 onChange={(e) => setCity(e.target.value)}/>
                 {validationErrors.city && <p className="error">{validationErrors.city}</p>}
                 </div>
-                <div className="inputContainer">
+                <div className="inputContainer">State
                 <input 
                 value={state}
                 type="text"
@@ -202,8 +202,7 @@ function UpdateSpot() {
         <div className="priceInfo">
             <div className="priceHeader">Set a base price for your spot</div>
             <div className="priceText">Competitive pricing can help our listing stand out and rank higher in search results.</div>
-            <div className="inputContainer">
-            <i className="fa-solid fa-dollar-sign"></i>
+            <div className="inputContainer priceContainer">$
                 <input 
                 value={price}
                 type="number"
@@ -212,7 +211,9 @@ function UpdateSpot() {
                 {validationErrors.price && <p className="error">{validationErrors.price}</p>}
             </div>
         </div>
-        <button type='submit' className="submit">Update Your Spot</button>
+        <div className='submitContainer'>
+        <button type='submit' className="submit-button">Update Your Spot</button>
+        </div>
         </form>
     </div>
 )
