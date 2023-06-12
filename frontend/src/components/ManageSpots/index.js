@@ -18,7 +18,7 @@ export default function ManageSpots() {
 
   return (
     <>
-      {!spots ? (
+      {spots.length === 0 ? (
         <div className="manageSpotsHeader">
           <div className="manageHeader">Manage Spots</div>
           <Link to="/spots/new">
@@ -28,9 +28,9 @@ export default function ManageSpots() {
       ) : (
         <div className="manageSpotsHeader">
           <div className="manageHeader">Manage Spots</div>
-          <Link to="/spots/new">
+          {/* {<Link to="/spots/new">
             <button className="addSpotButton">Create a New Spot</button>
-          </Link>
+          </Link>} */}
           <div id="spots-container">
             {spots &&
               spots.map((spot) => (
