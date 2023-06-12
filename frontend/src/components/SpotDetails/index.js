@@ -14,8 +14,8 @@ export default function SpotDetail() {
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-    console.log(reviews); 
-  console.log(spot)
+  //   console.log(reviews); 
+  // console.log(spot)
   
 
   useEffect(() => {

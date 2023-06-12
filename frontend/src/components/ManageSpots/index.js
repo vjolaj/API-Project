@@ -10,7 +10,7 @@ export default function ManageSpots() {
   const history = useHistory();
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spot.allSpots);
-  console.log(spots);
+  // console.log(spots);
 
   useEffect(() => {
     dispatch(getUserSpotsThunk());

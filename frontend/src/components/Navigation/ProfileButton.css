@@ -19,8 +19,8 @@ ul li:nth-child(2) {
 
 ul {
     position: absolute;
-    top: 44px;
-    left: 802px;
+    top: 47px;
+    right: 55px;
     display: flex;
     flex-direction: column;
 }
