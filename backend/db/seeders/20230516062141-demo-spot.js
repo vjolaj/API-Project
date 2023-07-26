@@ -27,7 +27,7 @@ module.exports = {
           price: 123,
         },
         {
-          ownerId: 1,  //spotId 2
+          ownerId: 1, //spotId 2
           address: "13 Sumner Street",
           city: "Boston",
           state: "Massachusetts",
@@ -243,6 +243,18 @@ module.exports = {
           description: "Escape to nature in this cozy Lake Tahoe cabin",
           price: 320,
         },
+        {
+          ownerId: 2, //spotId 20
+          address: "215 Forest Lane",
+          city: "Portland",
+          state: "Maine",
+          country: "United States of America",
+          lat: 43.6615,
+          lng: -70.2553,
+          name: "Cozy Cabin Retreat",
+          description: "Experience tranquility in this secluded forest cabin",
+          price: 190,
+        }
       ],
       {}
     );
@@ -274,7 +286,8 @@ module.exports = {
             "812 Peak View",
             "25 Desert Oasis",
             "50 Harbor Drive",
-            "75 Mountain Retreat"
+            "75 Mountain Retreat",
+            "215 Forest Lane"
           ],
         },
       },
