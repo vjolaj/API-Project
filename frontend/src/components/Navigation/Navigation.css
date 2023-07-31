@@ -37,6 +37,8 @@ button:first-child {
 
 .createSpot {
     margin-right: 10px;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.622);
 }
 
 .userProfile > button {

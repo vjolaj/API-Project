@@ -63,7 +63,7 @@
     margin-right: 5px;
 }
 
-.reserveButton {
+.reserveButton button{
     width: 100%;
     margin-top: 20px;    
     border: none;
@@ -210,7 +210,7 @@
     color: white;
 }
 
-.reserveButton:hover {
+.reserveButton  button:hover {
     opacity: 0.8;
     background-color: #FF5A5F;
     color: white;

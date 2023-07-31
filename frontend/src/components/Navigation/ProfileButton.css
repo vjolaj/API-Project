@@ -56,3 +56,7 @@ li > button {
     margin-left: auto;
     margin-right: auto;
 }
+
+.logOut button:hover {
+    background-color: rgba(0, 0, 0, 0.747);
+}

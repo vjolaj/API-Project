@@ -1,11 +1,15 @@
 #spots-container {
     display: flex;
-    margin-left: 18px;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    justify-content: center;
+    width: auto;
+    gap: 1em;
 }
 
-.spot {
+/* .spot {
     margin-bottom: 0px;
-}
+} */
 
 .manageSpot-buttons {
     display: flex;
@@ -42,13 +46,16 @@
 }
 
 .manageHeader {
-    font-size: 24px;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin: 20px 30px;
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+
 }
 
 .addSpotButton {
-    margin: 0px 30px 15px 30px;
+    /* margin: 0px 30px 15px 30px; */
     background-color: #afaeae;
     border: none;
     padding: 5px 10px;
@@ -58,6 +65,16 @@
     color: white;
 }
 
+.addSpotContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
 .addSpotButton:hover {
     background-color: #999999;
+}
+
+.manage-spot {
+    margin-bottom: 3em;
 }

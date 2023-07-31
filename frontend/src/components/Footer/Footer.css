@@ -1,0 +1,29 @@
+#footer-wrapper {
+    width: 100%;
+    background-color: white;
+    /* position: fixed; */
+    bottom: 15px;
+}
+
+#footer-content {
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    display: flex;
+    padding-top: 0.7em;
+    font-size: 0.9rem;
+    flex-direction: row;
+    justify-content: space-around;
+    color: rgba(0, 0, 0, 0.628);
+    border-top: 1px solid rgba(128, 128, 128, 0.436);
+}
+
+.dev-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dev-info a {
+    color: black
+}

@@ -7,6 +7,7 @@ import "./SpotDetails.css";
 import OpenModalButton from '../OpenModalButton'
 import PostReviewModal from "../PostReviewModal";
 import DeleteReviewModal from "../DeleteReviewModal";
+import CreateBookingModal from "../CreateBookingModal";
 
 export default function SpotDetail() {
   const { spotId } = useParams();
@@ -14,9 +15,6 @@ export default function SpotDetail() {
   const user = useSelector((state) => state.session.user)
   const spot = useSelector((state) => state.spot.singleSpot);
   const reviews = useSelector((state) => state.review.reviews);
-  //   console.log(reviews); 
-  // console.log(spot)
-  
 
   useEffect(() => {
     dispatch(spotDetailThunk(spotId));
@@ -34,8 +32,12 @@ export default function SpotDetail() {
     return <div>Loading Reviews...</div>;
   }
 
-  const handleReserveClick = () => {
-    alert("Feature Coming Soon...");
+  const handleReserveClickOwner = () => {
+    if (!user)  {
+      return alert("You must log in to book a spot!");
+    }
+    if (user.id == spot.ownerId)
+      return alert("You cannot book your own spot!");
   };
 
   const convertDate = (date) => {
@@ -102,9 +104,15 @@ export default function SpotDetail() {
               )}
             </div>
           </div>
-          <button className="reserveButton" onClick={handleReserveClick}>
-            Reserve Now
-          </button>
+          <div className="reserveButton">
+          {user && user.id !== spot.ownerId ? 
+               <OpenModalButton
+               buttonText="Reserve"
+               modalComponent={<CreateBookingModal spot={spot} />}
+               /> : <button onClick={handleReserveClickOwner}>
+               Reserve Now
+             </button>}
+          </div>
         </div>
       </div>
       <div className="reviewsContainer">
@@ -134,7 +142,6 @@ export default function SpotDetail() {
         <div className="postYourReview">
               {user && user.id !== spot.ownerId && (!reviews.find((review) => review.userId === user.id)) && 
                <OpenModalButton
-              //  id="deleteButton"
                buttonText="Post Your Review"
                modalComponent={<PostReviewModal spot={spot} user={user} />}
                />}

@@ -28,15 +28,17 @@ export default function ManageSpots() {
       ) : (
         <div className="manageSpotsHeader">
           <div className="manageHeader">Manage Spots</div>
+          <div className="addSpotContainer">
           {<Link to="/spots/new">
             <button className="addSpotButton">Create a New Spot</button>
           </Link>}
+          </div>
           <div id="spots-container">
             {spots &&
               spots.map((spot) => (
                 <div className="spot-container">
                   <Link to={`/spots/${spot.id}`}>
-                    <div className="spot" title={spot.name}>
+                    <div className="spot manage-spot" title={spot.name}>
                       <img src={spot.previewImage} alt="Spot Preview" />
                       <div className="location-and-rating">
               <p>
